@@ -1,33 +1,22 @@
-package com.leeyunbo.realmvvmpractice
+package com.leeyunbo.realmvvmpractice.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.google.gson.annotations.SerializedName
+import com.leeyunbo.realmvvmpractice.R
+import com.leeyunbo.realmvvmpractice.data.UserVO
+import com.leeyunbo.realmvvmpractice.util.RetrofitFactory
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
-import java.lang.reflect.Array
-import kotlin.Array as Array1
-data class UserVO(
-    @SerializedName("id")
-    var id : Int,
-    @SerializedName("nickname")
-    var nickname : String
-)
 
 class MainActivity : AppCompatActivity() {
-    val retrofit =
-        Retrofit
-            .Builder()
-            .baseUrl("http://192.168.219.103:8080")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
     val service =
-        retrofit.create(RetrofitNetwork::class.java)
+        RetrofitFactory.getRetrofit().create(RetrofitNetwork::class.java)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +25,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        /*
+
         service.getUserList().enqueue(object : Callback<List<UserVO>> {
             override fun onFailure(call: Call<List<UserVO>>, t: Throwable) {
                 Log.e("IOException","===>getUserList() 요청 실패 서버 확인 바람")
@@ -44,13 +33,14 @@ class MainActivity : AppCompatActivity() {
                 call.cancel()
             }
 
-            override fun onResponse(call: Call<List<UserVO>>, response: Response<Array>) {
-                if(response.isSuccessful) {
-                    Log.i("Response :: ", response?.body().toString())
+            override fun onResponse(call: Call<List<UserVO>>, response: Response<List<UserVO>>) {
+                for(data in arrayOf(response.body())) {
+                    println(data?.toString())
                 }
             }
         })
-        */
+
+
         service.getUser(1).enqueue(object : Callback<UserVO> {
             override fun onFailure(call: Call<UserVO>, t: Throwable) {
                 Log.e("IOException","===>getUserList() 요청 실패 서버 확인 바람")
