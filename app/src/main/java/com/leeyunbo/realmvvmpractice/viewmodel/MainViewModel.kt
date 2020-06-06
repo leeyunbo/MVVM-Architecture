@@ -2,6 +2,7 @@ package com.leeyunbo.realmvvmpractice.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.leeyunbo.realmvvmpractice.api.Api
 import com.leeyunbo.realmvvmpractice.data.UserVO
@@ -19,11 +20,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class MainViewModel : ViewModel(){
-    private val service =
-        RetrofitFactory.getRetrofit().create(Api::class.java)
-
-    fun onResume() : Observable<List<UserVO>> {
-        return service.getUserList()
-            .subscribeOn(Schedulers.io())
+    val userList : MutableLiveData<List<UserVO>> by lazy {
+        MutableLiveData<List<UserVO>>()
     }
 }
