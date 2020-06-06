@@ -2,6 +2,7 @@ package com.leeyunbo.realmvvmpractice.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModel
 import com.leeyunbo.realmvvmpractice.api.Api
 import com.leeyunbo.realmvvmpractice.data.UserVO
 import com.leeyunbo.realmvvmpractice.util.RetrofitFactory
@@ -17,7 +18,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainViewModel {
+class MainViewModel : ViewModel(){
     private val service =
         RetrofitFactory.getRetrofit().create(Api::class.java)
 
