@@ -25,5 +25,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         viewModel.userList.observe(this, userListObserver)
+
+        viewModel.getUserList()
     }
 }

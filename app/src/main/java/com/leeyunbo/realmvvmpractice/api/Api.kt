@@ -11,10 +11,10 @@ import retrofit2.http.Path
 
 interface Api {
     @GET("users")
-    fun getUserList() : Observable<List<UserVO>>
+    fun getUserList() : List<UserVO>
 
     @GET("/users/{id}")
-    fun getUser(@Path("id") id : Int) : Single<UserVO>
+    fun getUser(@Path("id") id : Int) : UserVO
 
     @POST("/users")
     fun insertUser(@Body vo : UserVO)
