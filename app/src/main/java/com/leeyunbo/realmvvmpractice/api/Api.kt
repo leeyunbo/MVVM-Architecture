@@ -11,7 +11,7 @@ import retrofit2.http.Path
 
 interface Api {
     @GET("users")
-    fun getUserList() : List<UserVO>
+    fun getUserList() : Call<List<UserVO>>
 
     @GET("/users/{id}")
     fun getUser(@Path("id") id : Int) : UserVO

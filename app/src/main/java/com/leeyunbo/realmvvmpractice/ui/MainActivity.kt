@@ -20,12 +20,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        viewModel.getUserList()
+
         val userListObserver = Observer<List<UserVO>> { userList ->
             println(userList.toString())
         }
 
         viewModel.userList.observe(this, userListObserver)
 
-        viewModel.getUserList()
     }
 }

@@ -5,9 +5,10 @@ import androidx.lifecycle.ViewModel
 import com.leeyunbo.realmvvmpractice.data.UserVO
 import com.leeyunbo.realmvvmpractice.datamodel.UserDataModel
 import kotlinx.coroutines.*
+import java.io.IOException
 
 class MainViewModel : ViewModel(){
-    private val job = Job()
+    private var job = Job()
 
     private val model : UserDataModel by lazy {
         UserDataModel()
@@ -16,13 +17,26 @@ class MainViewModel : ViewModel(){
         MutableLiveData<List<UserVO>>()
     }
 
+    val user : MutableLiveData<UserVO> by lazy {
+        MutableLiveData<UserVO>()
+    }
+
     fun getUserList() {
-        CoroutineScope(Dispatchers.Main).launch {
-            print(Thread.currentThread().name)
-            val deffered = async(Dispatchers.Default) {
-                userList.postValue(model.getUserList())
+        job =  GlobalScope.launch(Dispatchers.Main) {
+            async(Dispatchers.Default) {
+                try {
+                    val result = model
+                        .getUserList()
+                        .execute()
+                        .body()
+
+                    if (result!!.isNotEmpty()) {
+                        userList.postValue(result)
+                    }
+                } catch (e : IOException) {
+                    e.printStackTrace()
+                }
             }
-            deffered.await()
         }
     }
 
