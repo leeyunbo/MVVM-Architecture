@@ -14,7 +14,7 @@ interface Api {
     fun getUserList() : Call<List<UserVO>>
 
     @GET("/users/{id}")
-    fun getUser(@Path("id") id : Int) : UserVO
+    fun getUser(@Path("id") id : Int) : Call<UserVO>
 
     @POST("/users")
     fun insertUser(@Body vo : UserVO)

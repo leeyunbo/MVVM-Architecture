@@ -13,8 +13,8 @@ class UserDataModel {
         return service.getUserList()
     }
 
-    fun getUser() : UserVO {
-        return service.getUser(1)
+    fun getUser(id : Int) : Call<UserVO> {
+        return service.getUser(id)
     }
 
 

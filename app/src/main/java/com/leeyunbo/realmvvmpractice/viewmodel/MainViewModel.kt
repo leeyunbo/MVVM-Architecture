@@ -40,6 +40,23 @@ class MainViewModel : ViewModel(){
         }
     }
 
+    fun getUser(id : Int) {
+        job = GlobalScope.launch(Dispatchers.Main) {
+            async(Dispatchers.Default) {
+                try {
+                    val result = model
+                        .getUser(id)
+                        .execute()
+                        .body()
+
+                    user.postValue(result)
+                } catch (e : IOException) {
+                    e.printStackTrace()
+                }
+            }
+        }
+    }
+
     override fun onCleared() {
         super.onCleared()
         job.cancel()
