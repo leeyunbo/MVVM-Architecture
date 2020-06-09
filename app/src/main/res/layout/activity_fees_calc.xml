@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        tools:context=".ui.FeesCalcActivity">
+
+    <EditText
+            android:id="@+id/fees_input_et"
+            android:hint="금액을 입력하세요."
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    <Button
+            android:id="@+id/fees_none_discount_bt"
+            android:text="수수료 할인 없음"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    <Button
+            android:id="@+id/fees_pc_discount_bt"
+            android:text="PC방 수수료 할인"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    <Button
+            android:id="@+id/fees_top_discount_bt"
+            android:text="TOP 수수료 할인"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    <Button
+            android:id="@+id/fees_both_discount_bt"
+            android:text="TOP + PC방 수수료 할인"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    <TextView
+            android:id="@+id/fees_output_tv"
+            android:hint="수수료 할인 결과"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+
+
+</LinearLayout>

@@ -37,5 +37,4 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.user.observe(this, userObserver)
     }
-
 }
