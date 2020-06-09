@@ -27,4 +27,12 @@
             android:layout_height="wrap_content"
             android:text="유저 정보가 없습니다."/>
 
+    <Button
+            android:id="@+id/main_move_bt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="수수료 계산기"
+            android:background="@color/colorButton"
+            />
+
 </LinearLayout>
