@@ -3,8 +3,12 @@ package com.leeyunbo.realmvvmpractice.data
 import com.google.gson.annotations.SerializedName
 
 data class UserVO(
-    @SerializedName("id")
-    var id : Int,
+    @SerializedName("accessId")
+    var accessId : String,
+
     @SerializedName("nickname")
-    var nickname : String
+    var nickname : String,
+
+    @SerializedName("level")
+    var level : Int
 )

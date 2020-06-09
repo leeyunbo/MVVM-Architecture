@@ -22,18 +22,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         get_button.setOnClickListener(View.OnClickListener {
-            requestUserList()
+            requestUser()
         })
     }
 
-    fun requestUserList() {
-        viewModel.getUserList()
+    private fun requestUser() {
+        viewModel.getUser(nickname_edittext.text.toString())
 
-        val userListObserver = Observer<List<UserVO>> { userList ->
-            userlist_tv.text = userList.toString()
+        println(viewModel.user)
+
+        val userObserver = Observer<UserVO> { user ->
+            userlist_tv.text = user.toString()
         }
 
-        viewModel.userList.observe(this, userListObserver)
+        viewModel.user.observe(this, userObserver)
     }
 
 }

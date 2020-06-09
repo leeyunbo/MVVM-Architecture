@@ -11,7 +11,7 @@ class RetrofitFactory {
             retrofit ?: synchronized(this) {
                 Retrofit
                     .Builder()
-                    .baseUrl("http://192.168.219.103:8080")
+                    .baseUrl("https://api.nexon.co.kr/fifaonline4/v1.0/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
             }

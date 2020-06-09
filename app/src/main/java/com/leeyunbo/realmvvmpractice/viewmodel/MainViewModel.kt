@@ -13,41 +13,22 @@ class MainViewModel : ViewModel(){
     private val model : UserDataModel by lazy {
         UserDataModel()
     }
-    val userList : MutableLiveData<List<UserVO>> by lazy {
-        MutableLiveData<List<UserVO>>()
-    }
 
     val user : MutableLiveData<UserVO> by lazy {
         MutableLiveData<UserVO>()
     }
 
-    fun getUserList() {
-        job =  GlobalScope.launch(Dispatchers.Main) {
-            async(Dispatchers.Default) {
-                try {
-                    val result = model
-                        .getUserList()
-                        .execute()
-                        .body()
 
-                    if (result!!.isNotEmpty()) {
-                        userList.postValue(result)
-                    }
-                } catch (e : IOException) {
-                    e.printStackTrace()
-                }
-            }
-        }
-    }
-
-    fun getUser(id : Int) {
+    fun getUser(nickname: String) {
         job = GlobalScope.launch(Dispatchers.Main) {
             async(Dispatchers.Default) {
                 try {
                     val result = model
-                        .getUser(id)
+                        .getUser()
                         .execute()
                         .body()
+
+                    println(result)
 
                     user.postValue(result)
                 } catch (e : IOException) {
