@@ -10,8 +10,12 @@ class UserDataModel {
         RetrofitFactory.getRetrofit().create(UserAPI::class.java)
 
 
-    fun getUser() : Call<UserVO> {
-        return service.getUser()
+    fun getUser(nickname: String) : Call<UserVO> {
+        return service.getUser(nickname)
+    }
+
+    fun getUserDivision(accessId: String) : Call<List<UserVO>> {
+        return service.getUserDivision(accessId)
     }
 
 

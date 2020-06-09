@@ -23,12 +23,16 @@ class MainViewModel : ViewModel(){
         job = GlobalScope.launch(Dispatchers.Main) {
             async(Dispatchers.Default) {
                 try {
-                    val result = model
-                        .getUser()
+                    val result : UserVO? = model
+                        .getUser(nickname)
                         .execute()
                         .body()
 
-                    println(result)
+                    println(result.toString())
+
+                    val divisionResult : List<UserVO> = getUserDivision(result!!.accessId)
+                    result.matchType = divisionResult[0].matchType
+                    result.division = divisionResult[0].division
 
                     user.postValue(result)
                 } catch (e : IOException) {
@@ -36,6 +40,10 @@ class MainViewModel : ViewModel(){
                 }
             }
         }
+    }
+
+    fun getUserDivision(accessId: String): List<UserVO> {
+        return model.getUserDivision(accessId).execute().body()!!
     }
 
     override fun onCleared() {

@@ -4,11 +4,17 @@ import com.google.gson.annotations.SerializedName
 
 data class UserVO(
     @SerializedName("accessId")
-    var accessId : String,
+    var accessId: String,
 
     @SerializedName("nickname")
-    var nickname : String,
+    var nickname: String,
 
     @SerializedName("level")
-    var level : Int
+    var level: Int,
+
+    @SerializedName("division")
+    var division: Int,
+
+    @SerializedName("matchType")
+    var matchType: Int
 )
